@@ -6,7 +6,7 @@ if (isset($_POST["send"])) {
     $chat = $_POST["chat"];
     $sent_from = $_POST["sent_from"];
 
-    if(empty($chat)){
+    if (empty($chat)) {
         redirect("index.php");
         die;
     }

@@ -31,52 +31,69 @@ while ($chatAssoc = mysqli_fetch_object($result)) {
 
 <body>
     <div class="wrapper">
-        <div class="header">
-            Chat
+        <div class="channels-container">
+            hi
         </div>
-        <div class="chats">
-            <?php if($result->num_rows > 0): ?>
-            <?php foreach ($chats as $chat) : ?>
-                <?php 
-                $sent_at = date('g:i A', strtotime($chat->sent_at));
-                if(intval(date('j', strtotime($chat->sent_at))) == intval(date('j', time()))-1){
-                    $when = "Yesterday at " . $sent_at;
-                }else if(intval(date('j', strtotime($chat->sent_at))) == intval(date('j', time()))) {
-                    $when = "Today at " . $sent_at;
-                }else {
-                    $when = date('l m Y g:i A', strtotime($chat->sent_at));
-                } ?>
-                <div class="chat-bubble">
-                    <div class="bubble-head">
-                        <p class="bubble-user"><?= $chat->sent_from ?></p>
-                        <p class="bubble-sent-at"><?= $when ?></p>
+        <div class="chats-container">
+            <div class="header">
+                <p class="text-clear">Chat</p>
+                <img src="svgs/users.svg" alt="">
+            </div>
+            <div class="chats">
+                <?php if ($result->num_rows > 0) : ?>
+                    <?php $saveNow = null; ?>
+                    <?php foreach ($chats as $chat) : ?>
+                        <?php
+                        var_dump($saveNow);
+                        $now = date('i', strtotime($chat->sent_at));
+                        $sent_at = date('g:i A', strtotime($chat->sent_at));
+                        if (intval(date('j', strtotime($chat->sent_at))) == intval(date('j', time())) - 1) {
+                            $when = "Yesterday at " . $sent_at;
+                        } else if (intval(date('j', strtotime($chat->sent_at))) == intval(date('j', time()))) {
+                            $when = "Today at " . $sent_at;
+                        } else {
+                            $when = date('l, m-Y g:i A', strtotime($chat->sent_at));
+                        } ?>
+                        <?php $saveNow = $now; ?>
+
+
+                        <div class="chat-bubble">
+                            <div class="bubble-head">
+                                <p class="bubble-user"><?= $chat->sent_from ?></p>
+                                <p class="bubble-sent-at"><?= $when ?></p>
+                            </div>
+                            <p class="bubble-text"><?= $chat->chat . $saveNow ?></p>
+                        </div>
+
+
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="no-chats">
+                        <p>It is empty for now.</p>
+                        <p>Start chatting!</p>
                     </div>
-                    <p class="bubble-text"><?= $chat->chat ?></p>
-                </div>
-            <?php endforeach; ?>
-            <?php else: ?>
-                <div class="no-chats">
-                    
-                    <p>It is empty for now.</p>
-                    <p>Start chatting!</p>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
+            </div>
+
+
+            <div class="texting-container">
+                <form action="send_chat.php" method="post">
+                    <div class="texting-group">
+
+                        <input autocomplete="off" class="texting-input" type="text" name="chat" placeholder="Message here..">
+                        <input type="hidden" name="sent_from" id="sent_from" value="epilepsi">
+                        <button class="texting-button" type="submit" name="send">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="texting-container">
-            <form action="send_chat.php" method="post">
-                <div class="texting-group">
-
-                    <input class="texting-input" type="text" name="chat" placeholder="Message here..">
-                    <input type="hidden" name="sent_from" id="sent_from" value="ennie">
-                    <button class="texting-button" type="submit" name="send">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </div>
-            </form>
+        <div class="users-container">
+            slebeww
         </div>
     </div>
 </body>

@@ -1,31 +1,70 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   font-family: "Quicksand";
   margin: 0;
   padding: 0;
   background-color: rgb(22, 22, 22);
 }
 
+.text-clear {
+  margin: 0;
+  padding: 0;
+}
+
 .wrapper {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  display: block;
   height: 100%;
 }
 
+.channels-container {
+  background-color: rgb(42, 44, 46);
+  width: 25%;
+}
+.chats-container {
+  background-color: rgb(43, 43, 40);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 50%;
+}
+
+.users-container {
+  background-color: rgb(46, 45, 42);
+  width: 25%;
+}
+
 .header {
+  display: flex;
+  justify-content: space-between;
   color: white;
   box-sizing: border-box;
   background-color: black;
-  position: fixed;
-  display: block;
   width: 100%;
   font-size: 20px;
-  padding: 14px 0 14px 20px;
+  padding: 14px 22px 14px 22px;
+}
+.header img {
+  cursor: pointer;
 }
 
 .chats {
-  padding: 56px 0 76px 0;
+  /* background-color: green; */
+  height: 100%;
+  overflow-x: hidden;
+  /* overflow-y: auto; */
+  text-align: justify;
+}
+
+.chats::-webkit-scrollbar {
+  display: none;
 }
 
 .no-chats {
@@ -44,9 +83,10 @@ body {
 }
 
 .chat-bubble {
-  background-color: rgb(22, 22, 22);
+  word-break: break-word;
+  background-color: rgba(22, 22, 22);
   color: white;
-  padding: 10px 16px 10px 26px;
+  padding: 12px 26px 12px 26px;
 }
 
 .chat-bubble p {
@@ -56,7 +96,7 @@ body {
 .bubble-head {
   display: flex;
   flex-direction: row;
-  margin-bottom: 1.5px;
+  margin-bottom: 5px;
 }
 
 .bubble-user {
@@ -73,17 +113,17 @@ body {
 
 .texting-container {
   box-sizing: border-box;
-  background-color: black;
-  position: fixed;
+  background-color: rgb(22, 22, 22);
   display: block;
   width: 100%;
-  padding: 10px 10px 16px 10px;
-  bottom: 0;
+  padding: 16px 10px 16px 10px;
 }
 
 .texting-group {
   display: flex;
   gap: 5px;
+  background-color: #232323;
+  border-radius: 4px;
 }
 
 .texting-input {
@@ -93,12 +133,33 @@ body {
   background-color: rgb(35, 35, 35);
   box-sizing: border-box;
   width: 100%;
-  padding: 10px 8px 10px 9.5px;
+  padding: 10px 8px 10px 12px;
   border: none;
-  border-radius: 3px 0 0 3px;
+  border-radius: 3px 6px 6px 3px;
   text-decoration: none;
 }
 
+.texting-input:hover {
+  background-color: #303030;
+}
+
+.texting-input:focus {
+  background-color: #232323;
+
+  outline: 0;
+}
+
 .texting-button {
+  cursor: pointer;
   border: none;
+  border-radius: 6px 4px 4px 6px;
+  background-color: #232323;
+  width: 45px;
+  padding-left: 2px;
+  height: 40px;
+  color: rgb(161 161 161);
+}
+
+.texting-button:hover {
+  background-color: #303030;
 }
