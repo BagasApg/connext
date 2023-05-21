@@ -11,7 +11,7 @@ if (isset($_POST["send"])) {
         die;
     }
     $result = mysqli_query($conn, "INSERT INTO chats(chat, sent_from, sent_at) VALUES('$chat', '$sent_from',now())");
-    redirect("index.php");
+    redirect("tes.php");
 } else {
     redirect("index.php");
 }

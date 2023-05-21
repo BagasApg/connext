@@ -44,8 +44,10 @@ while ($chatAssoc = mysqli_fetch_object($result)) {
                     <?php $saveNow = null; ?>
                     <?php foreach ($chats as $chat) : ?>
                         <?php
-                        var_dump($saveNow);
                         $now = date('i', strtotime($chat->sent_at));
+                        // if ($saveNow != $now) {
+                        //     var_dump($saveNow);
+                        // }
                         $sent_at = date('g:i A', strtotime($chat->sent_at));
                         if (intval(date('j', strtotime($chat->sent_at))) == intval(date('j', time())) - 1) {
                             $when = "Yesterday at " . $sent_at;
@@ -54,16 +56,19 @@ while ($chatAssoc = mysqli_fetch_object($result)) {
                         } else {
                             $when = date('l, m-Y g:i A', strtotime($chat->sent_at));
                         } ?>
-                        <?php $saveNow = $now; ?>
-
 
                         <div class="chat-bubble">
-                            <div class="bubble-head">
-                                <p class="bubble-user"><?= $chat->sent_from ?></p>
-                                <p class="bubble-sent-at"><?= $when ?></p>
-                            </div>
+                            <?php if ($saveNow != $now) : ?>
+                                <div class="bubble-head">
+                                    <p class="bubble-user"><?= $chat->sent_from ?></p>
+                                    <p class="bubble-sent-at"><?= $when ?></p>
+                                </div>
+
+
+                            <?php endif; ?>
                             <p class="bubble-text"><?= $chat->chat . $saveNow ?></p>
                         </div>
+                        <?php $saveNow = $now; ?>
 
 
                     <?php endforeach; ?>
